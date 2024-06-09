@@ -271,6 +271,13 @@ speaker:
   # ignore the exclude-from-external-loadbalancer label
   ignoreExcludeLB: false
 
+  extraArgs: {}
+  ## @param speaker.extraArgs defiles additional arguments for the speaker
+  ## eg in order to enable experimental feature like L2 Service Status Update
+  ## extraArgs:
+  ##   enable-l2-service-status:
+
+
   image:
     repository: quay.io/metallb/speaker
     tag:

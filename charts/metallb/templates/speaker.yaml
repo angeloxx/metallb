@@ -250,6 +250,15 @@ spec:
         {{- if .Values.prometheus.secureMetricsPort }}
         - --host=localhost
         {{- end }}
+        {{- if kindIs "map" .Values.speaker.extraArgs }}
+        {{- range $key, $value := .Values.speaker.extraArgs }}
+        {{- if not (kindIs "invalid" $value) }}
+        - --{{ $key }}={{ tpl ($value | toString) $ }}
+        {{- else }}
+        - --{{ $key }}
+        {{- end }}
+        {{- end }}
+        {{- end }}
         env:
         - name: METALLB_NODE_NAME
           valueFrom:
