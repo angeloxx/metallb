@@ -61,7 +61,7 @@ func (r *Layer2StatusReconciler) Reconcile(ctx context.Context, req ctrl.Request
 	level.Info(r.Logger).Log("controller", "Layer2StatusReconciler", "start reconcile", req.NamespacedName.String())
 	defer level.Info(r.Logger).Log("controller", "Layer2StatusReconciler", "end reconcile", req.NamespacedName.String())
 
-	svcName := strings.TrimSuffix(req.Name, fmt.Sprintf("-%s", r.NodeName))
+	svcName := req.Name
 	ipAdvS := r.StatusFetcher(types.NamespacedName{Name: svcName, Namespace: req.Namespace})
 
 	if len(ipAdvS) == 0 {
